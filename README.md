@@ -10,7 +10,7 @@ Technical Requirements:
  - receive_date: Date when the movie is received.
  - status: Enum type indicating whether the movie is received or released.
 
-3. Functionality:
+2. Functionality:
  - Display Movies: Display both "showing" and "coming" movies.
  - Add Movie: Add a new movie to the "coming" list, considering various constraints.
  - Start Showing Movies: Move movies from "coming" to "showing" list based on a specified release date, considering constraints.
@@ -20,11 +20,12 @@ Technical Requirements:
  - Menu-based Interface: Implement a menu-based interface for user interaction.
  - File I/O: Read movies from an initial file, and write changes back to the file.
 
-4. File Format:
+3. File Format:
  - The input file for movie data has the following format:
 
    Glass, 01/18/2019, Drama/Fantasy, 01/12/2019, released
    Miss Bala, 02/01/2019, Mystery/Thriller, 01/17/2019, received
+   
    Each line represents a movie, and the information is structured as follows: name, release_date, description, receive_date, status.
 
 Implementation: 
@@ -52,9 +53,3 @@ Changelog:
  - 1.0.0 (Date): Initial release.
 
 Future Improvements:
-
-
-
-
-
-
