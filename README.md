@@ -44,7 +44,7 @@ License:
  - This project is licensed under the MIT License.
  - 
 Author:
- - Athul Jaishankar, Jordan Pham, Ethan Hillebrand
+ - Athul Jaishankar, Jordan Pham.
 
 Version:
  - 1.0.0
