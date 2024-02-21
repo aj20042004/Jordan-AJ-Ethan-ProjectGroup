@@ -129,8 +129,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="date.cpp" />
-    <ClCompile Include="movie.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="date.h" />

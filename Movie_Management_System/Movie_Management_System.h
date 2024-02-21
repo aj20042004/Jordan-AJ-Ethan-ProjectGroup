@@ -12,6 +12,8 @@
 
 using namespace std;
 
+
+
 class Movie_Management_System {
 
 public:
@@ -322,8 +324,22 @@ void Movie_Management_System::load_from_file(const string& input_file_name) {
 		}
 
 		Movie obj_movie(name_str, obj_release_date, description_str, obj_receive_date, status);
+
+
 		if (status == RECEIVED) {
-			coming_list.push_back(obj_movie);
+
+			if (coming_list.empty()) {
+				coming_list.push_back(obj_movie);
+				continue;
+			}
+
+			for (list<Movie>::iterator it = coming_list.begin(); it != coming_list.end(); it++) {
+				if (it->get_release_date() > obj_release_date) {
+					coming_list.insert(it, obj_movie);
+					break;
+				}
+			}
+
 		}
 		else {
 			showing_list.push_back(obj_movie);
