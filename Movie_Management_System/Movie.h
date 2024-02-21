@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #ifndef MOVIE_H
 #define MOVIE_H
 #include <iostream>
@@ -91,20 +90,3 @@ void Movie::set_status(Status new_status) {
 
 
 #endif
-=======
-#pragma once
-#include "date.h"
-#include "status.h"
-#include <ostream>
-
-class Movie {
-public:
-	std::string name;
-	Date& releaseDate;
-	std::string description;
-	Date& receiveDate;
-	Status status;
-	void format(std::ostream&);
-	Movie(std::string name, Date& releaseDate, std::string description, Date& receiveDate, Status status);
-};
->>>>>>> 40d89ebbbf79f77c462df40b01c09d5d4e769611
