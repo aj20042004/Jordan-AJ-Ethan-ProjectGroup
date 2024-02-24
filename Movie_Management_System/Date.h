@@ -113,7 +113,7 @@ bool Date::operator<=(const Date& other) const {
 	// For example, you can compare years, months, and days one by one
 	// or convert them to a comparable numerical value.
 	// Return true if this date is less than or equal to the other date.
-	if (this->month <= other.month && this->year <= other.year && this->day_of_month <= other.day_of_month) {
+	if (this->month <= other.month || this->year <= other.year || this->day_of_month <= other.day_of_month) {
 		return true;
 	}
 	else {

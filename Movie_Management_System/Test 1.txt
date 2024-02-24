@@ -1,3 +1,4 @@
 Miss Bala, 02/01/2019, Mystery/Thriller, 01/17/2019, received
-Thor, 02/01/2014, Mystery/Thriller, 01/17/2019, received
-Cars, 02/01/2010, Mystery/Thriller, 01/17/2019, received
+Thor, 02/01/2014, Mystery/Thriller, 01/18/2012, received
+Cars, 02/01/2010, Mystery/Thriller, 01/19/2009, received
+Barbie, 02/01/2025, Mystery/Thriller, 01/20/2014, received

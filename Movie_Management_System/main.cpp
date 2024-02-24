@@ -1,12 +1,21 @@
 
 // Bug needs to be Fixed:
-// ----------------------
-// Need to fix the release date order ( non - decreasing ) for both coming and showing lists. Time Complexity requirement: O(n). Need to sort while adding the movie object
-// Option number: 5 - In the start showing movies option - after moving the movies from coming to showing list. Do not display in the main, just output in file 
-// Option number: 3 - After editing the release date, the new release date needs to be placed in correct place.  
-// Option number: 6 - Display the number of movies earlier than the specified date strictly, not equal to
+// ------------------------
+// Completed -> Need to fix the release date order ( non - decreasing ) for both coming and showing lists. Time Complexity requirement: O(n). Need to sort while adding the movie object
+// Completed -> Option number: 5 - In the start showing movies option - after moving the movies from coming to showing list. Do not display in the main, just output in file 
+// Completed -> Option number: 3 - After editing the release date, the new release date needs to be placed in correct place.  
+// Completed -> Option number: 6 - Display the number of movies earlier than the specified date strictly, not equal to
+
+// Need to Complete:
+// ---------------------
 // Create more test cases ( More input files with different inputs)
 // Need to complete the documentation ( in-line comments )
+
+// Questions to ask professor: Do we need to validate the release date when loading the data from input file ?
+// Questions to ask professor: Can the input file be empty ?
+// Questions to ask professor: Editing new release date and order it in non-decreasing order takes O(n^2). Is that ok ?
+// Questions to ask professor: While enter new release date, do I need to check whether the new release is less than receive date for throwing error message ?
+
 
 #include <iostream>
 #include <list>
