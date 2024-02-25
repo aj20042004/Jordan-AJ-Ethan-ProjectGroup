@@ -44,17 +44,17 @@ int main() {
 		cout << "Welcome to the Movie Management System" << endl;
 		cout << "-----------------------------------------" << endl;
 		cout << "1. Display Movies" << endl;
-		cout << "2. Add Movies" << endl; 
-		cout << "3. Edit release dates" << endl;  
+		cout << "2. Add Movies" << endl;
+		cout << "3. Edit release dates" << endl;
 		cout << "4. Edit movie description" << endl;
-		cout << "5. Start showing movies in the theater" << endl;  
-		cout << "6. Number of movies before a date" << endl; 
+		cout << "5. Start showing movies in the theater" << endl;
+		cout << "6. Number of movies before a date" << endl;
 		cout << "7. Save to file" << endl;
 		cout << "8. Exit\n" << endl;
 
 		cout << "Enter the choice number: ";
 		cin >> choice_number;
-	    cout << endl;
+		cout << endl;
 
 		if (choice_number == 1) {
 			movie_mange_system_obj.display_movies();
@@ -62,14 +62,14 @@ int main() {
 		}
 
 		else if (choice_number == 2) {
-			
+
 			string movie_name_str, release_date_str, description_str, receive_date_str, status_str;
 			Date obj_release_date;
 			Date obj_receive_date;
 			Status status;
-			
+
 			cout << "Please enter a movie name to add: ";
-			getline(cin >> ws, movie_name_str); 
+			getline(cin >> ws, movie_name_str);
 			cout << endl;
 
 			cout << "Please enter a release date (format: MM/DD/YYYY - 01/09/2023) to add: ";
@@ -120,7 +120,7 @@ int main() {
 
 
 		else if (choice_number == 3) {
-			
+
 			string edit_movie_name, release_date_str;
 			Date edit_new_release_date;
 
@@ -134,7 +134,7 @@ int main() {
 
 			edit_new_release_date.parse_from_string(release_date_str);
 
-			movie_mange_system_obj.edit_coming_movie_releaseDate(edit_movie_name,edit_new_release_date);
+			movie_mange_system_obj.edit_coming_movie_releaseDate(edit_movie_name, edit_new_release_date);
 
 			cout << endl;
 		}
@@ -165,7 +165,7 @@ int main() {
 			cout << "Enter the specified release date (format: MM/DD/YYYY - 01/09/2023) to display the movies: " << endl;
 			cin >> specified_release_date_str;
 			cout << endl;
-		
+
 			specified_release_date.parse_from_string(specified_release_date_str);
 
 			movie_mange_system_obj.start_showing_movie(specified_release_date);
@@ -177,7 +177,7 @@ int main() {
 
 			string specified_release_date_str_cnt;
 			Date specified_release_date_cnt;
-			
+
 			cout << "Enter the specified release date (format: MM/DD/YYYY - 01/09/2023): " << endl;
 			cin >> specified_release_date_str_cnt;
 			cout << endl;
@@ -194,7 +194,7 @@ int main() {
 		}
 
 		else if (choice_number == 8) {
-			
+
 			cout << "Thank you" << endl;
 			loop_switch = false;
 		}
@@ -205,7 +205,7 @@ int main() {
 		}
 
 	}
-	
+
 
 
 	system("pause");

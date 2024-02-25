@@ -1,10 +1,10 @@
 The Showing Movies: 
  
+Thor, 2/1/2008, Mystery/Thriller, 1/18/2006, released
+Cars, 2/1/2010, Mystery/Thriller, 1/19/2009, released
+Barbie, 2/1/2025, Mystery/Thriller, 1/20/2014, released
  
 The Coming Movies: 
  
-Thor, 2/1/2014, Mystery/Thriller, 1/18/2012, received
-Barbie, 8/7/2015, Mystery/Thriller, 1/20/2014, received
-Miss Bala, 2/1/2019, Mystery/Thriller, 1/17/2019, received
-Cars, 7/8/2029, Mystery/Thriller, 1/19/2009, received
+Miss Bala, 2/1/2028, Mystery/Thriller, 1/17/2019, received
  

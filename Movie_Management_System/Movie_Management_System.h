@@ -110,20 +110,26 @@ void Movie_Management_System::start_showing_movie(const Date& specified_released
 				}
 			}
 
-			// checking whether it is a valid date
-			if (!isValidDate(specified_released_date)) {
-				cout << "The release date is invalid... Sorry! Try again" << endl;
-			}
-
-			cout << endl;
 
 			if (it->get_status() == 0) {
 				Status status = RELEASED;
 				it->set_status(status);
 			}
 
-			showing_list.push_back(*it);
-			coming_list.erase(it);
+			list<Movie>::iterator insertion_place_showing_lst = find_if(showing_list.begin(), showing_list.end(), [&](const Movie& current) {
+				return current.get_release_date() > it->get_release_date();
+				});
+
+			if (insertion_place_showing_lst == showing_list.end()) {
+				showing_list.push_back(*it);
+				coming_list.erase(it);
+			}
+			else {
+				showing_list.insert(insertion_place_showing_lst, *it);
+				coming_list.erase(it);
+			}
+
+			cout << "Successfully moved the movie from coming list to showing list.." << endl;
 			return;
 
 		}
@@ -154,7 +160,7 @@ void Movie_Management_System::edit_coming_movie_releaseDate(const string& movie_
 			for (insertion_place = coming_list.begin(); insertion_place != coming_list.end(); ++insertion_place) {
 
 				if (insertion_place->get_release_date() > new_release_date) {
-					
+
 					coming_list.insert(insertion_place, *it);
 					insertion_place--;
 					insertion_place->set_release_date(new_release_date);
@@ -166,14 +172,14 @@ void Movie_Management_System::edit_coming_movie_releaseDate(const string& movie_
 			};
 
 			if (insertion_place == coming_list.end()) {
-				
+
 				coming_list.insert(insertion_place, *it);
 				insertion_place--;
 				insertion_place->set_release_date(new_release_date);
 				coming_list.erase(it);
 			}
 
-			
+
 			cout << "Movie information was successfully edited!! Thank you.." << endl;
 			return;
 		}
@@ -351,8 +357,6 @@ void Movie_Management_System::load_from_file(const string& input_file_name) {
 			}
 
 		}
-
-
 
 		else {
 
