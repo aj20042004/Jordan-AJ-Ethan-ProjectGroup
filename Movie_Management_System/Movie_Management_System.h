@@ -7,12 +7,11 @@
 #include <string>
 #include <sstream>
 #include "Date.h"
+#include <algorithm>
 #include "Status.h"
 #include "Movie.h"
 
 using namespace std;
-
-
 
 class Movie_Management_System {
 
@@ -81,8 +80,27 @@ void Movie_Management_System::add_movie(const Movie& new_movie) {
 	cout << "Adding the movie to the list...Please wait!" << endl;
 
 	if (new_movie.get_status() == RECEIVED) {
-		coming_list.push_back(new_movie);
+
+		if (coming_list.empty()) {
+			coming_list.push_back(new_movie);
+			return;
+		}
+
+		list<Movie>::iterator insertion_place = std::find_if(coming_list.begin(), coming_list.end(), [&](const Movie& current) {
+			return current.get_release_date() > new_movie.get_release_date();
+			});
+
+		if (insertion_place == coming_list.end()) {
+			coming_list.push_back(new_movie);
+		}
+		else {
+			coming_list.insert(insertion_place, new_movie);
+		}
+	
 	}
+
+
+	// Doubt here ?
 	else {
 		showing_list.push_back(new_movie);
 	}
@@ -116,28 +134,23 @@ void Movie_Management_System::start_showing_movie(const Date& specified_released
 				it->set_status(status);
 			}
 
-			list<Movie>::iterator insertion_place_showing_lst = find_if(showing_list.begin(), showing_list.end(), [&](const Movie& current) {
+			list<Movie>::iterator insertion_place_showing_lst = find_if(showing_list.begin(), showing_list.end(), [&](const Movie& current) {		
 				return current.get_release_date() > it->get_release_date();
 				});
 
 			if (insertion_place_showing_lst == showing_list.end()) {
 				showing_list.push_back(*it);
-				coming_list.erase(it);
+				it = coming_list.erase(it);
+				--it;
 			}
 			else {
 				showing_list.insert(insertion_place_showing_lst, *it);
-				coming_list.erase(it);
+				it = coming_list.erase(it);
+				--it;
 			}
-
-			cout << "Successfully moved the movie from coming list to showing list.." << endl;
-			return;
-
-		}
+		}	
 	}
-
-	cout << "Cannot find any movies that matches the specified date!! Try again ..." << endl;
 }
-
 
 void Movie_Management_System::edit_coming_movie_releaseDate(const string& movie_name_to_edit, const Date& new_release_date) {
 

@@ -5,6 +5,8 @@
 // Completed -> Option number: 5 - In the start showing movies option - after moving the movies from coming to showing list. Do not display in the main, just output in file 
 // Completed -> Option number: 3 - After editing the release date, the new release date needs to be placed in correct place.  
 // Completed -> Option number: 6 - Display the number of movies earlier than the specified date strictly, not equal to
+// Completed -> Add movies feature - while adding the movies to the list, sort them according to release date
+// Completed -> Start showing movies feature - Move all the movies with the specified date to coming list. Not one at a time.
 
 // Need to Complete:
 // ---------------------
@@ -15,7 +17,8 @@
 // Questions to ask professor: Can the input file be empty ?
 // Questions to ask professor: Editing new release date and order it in non-decreasing order takes O(n^2). Is that ok ?
 // Questions to ask professor: While enter new release date, do I need to check whether the new release is less than receive date for throwing error message ?
-
+// Questions to ask professor: We are supposed add movie to the showing list right ? option - 2, if we can only add movies to coming list, then delete status prompt
+// Questions to ask professor: Start showing movies feature - all the specified movies ? 
 
 #include <iostream>
 #include <list>
@@ -170,7 +173,6 @@ int main() {
 
 			movie_mange_system_obj.start_showing_movie(specified_release_date);
 
-			cout << endl;
 		}
 
 		else if (choice_number == 6) {
