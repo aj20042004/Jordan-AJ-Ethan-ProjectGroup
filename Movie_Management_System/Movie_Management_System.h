@@ -1,13 +1,15 @@
 #ifndef MOVIE_MANAGEMENT_SYSTEM_H
 #define MOVIE_MANAGEMENT_SYSTEM_H
+
 #include <iostream>
 #include <list>
 #include <fstream>
 #include <iomanip>
 #include <string>
 #include <sstream>
-#include "Date.h"
 #include <algorithm>
+#include <cstdlib>
+#include "Date.h"
 #include "Status.h"
 #include "Movie.h"
 
@@ -36,7 +38,6 @@ private:
 bool Movie_Management_System::isValidDate(const Date& date) {
 	return date.isValid();
 }
-
 
 void Movie_Management_System::display_movies() {
 
@@ -96,17 +97,10 @@ void Movie_Management_System::add_movie(const Movie& new_movie) {
 		else {
 			coming_list.insert(insertion_place, new_movie);
 		}
-	
-	}
 
-
-	// Doubt here ?
-	else {
-		showing_list.push_back(new_movie);
 	}
 
 	cout << "Movie was successfully added to the list. Thank you!!" << endl;
-
 }
 
 void Movie_Management_System::start_showing_movie(const Date& specified_released_date) {
@@ -134,7 +128,7 @@ void Movie_Management_System::start_showing_movie(const Date& specified_released
 				it->set_status(status);
 			}
 
-			list<Movie>::iterator insertion_place_showing_lst = find_if(showing_list.begin(), showing_list.end(), [&](const Movie& current) {		
+			list<Movie>::iterator insertion_place_showing_lst = find_if(showing_list.begin(), showing_list.end(), [&](const Movie& current) {
 				return current.get_release_date() > it->get_release_date();
 				});
 
@@ -148,11 +142,14 @@ void Movie_Management_System::start_showing_movie(const Date& specified_released
 				it = coming_list.erase(it);
 				--it;
 			}
-		}	
+		}
 	}
 }
 
+// find the movie and delete the movie and update the release date and insert it again.
 void Movie_Management_System::edit_coming_movie_releaseDate(const string& movie_name_to_edit, const Date& new_release_date) {
+
+	list<Movie>::iterator delete_place = coming_list.end();
 
 	for (list<Movie>::iterator it = coming_list.begin(); it != coming_list.end(); ++it) {
 
@@ -168,37 +165,42 @@ void Movie_Management_System::edit_coming_movie_releaseDate(const string& movie_
 				return;
 			}
 
-			list<Movie>::iterator insertion_place;
-
-			for (insertion_place = coming_list.begin(); insertion_place != coming_list.end(); ++insertion_place) {
-
-				if (insertion_place->get_release_date() > new_release_date) {
-
-					coming_list.insert(insertion_place, *it);
-					insertion_place--;
-					insertion_place->set_release_date(new_release_date);
-					coming_list.erase(it);
-					break;
-
-				}
-
-			};
-
-			if (insertion_place == coming_list.end()) {
-
-				coming_list.insert(insertion_place, *it);
-				insertion_place--;
-				insertion_place->set_release_date(new_release_date);
-				coming_list.erase(it);
-			}
-
-
-			cout << "Movie information was successfully edited!! Thank you.." << endl;
-			return;
+			delete_place = it;
+			break;
 		}
 	}
 
-	cout << "Sorry! The movie does not exists in the coming lists" << endl;
+	if (delete_place == coming_list.end()) {
+		cout << "Sorry! The movie does not exit...Try again later" << endl;
+		return;
+	}
+
+	list<Movie>::iterator insertion_place;
+
+
+	for (insertion_place = coming_list.begin(); insertion_place != coming_list.end(); ++insertion_place) {
+
+		if (insertion_place->get_release_date() > new_release_date) {
+
+			coming_list.insert(insertion_place, *delete_place);
+			insertion_place--;
+			insertion_place->set_release_date(new_release_date);
+			coming_list.erase(delete_place);
+			break;
+
+		}
+	}
+
+	if (insertion_place == coming_list.end()) {
+
+			coming_list.insert(insertion_place, *delete_place);
+			insertion_place--;
+			insertion_place->set_release_date(new_release_date);
+			coming_list.erase(delete_place);
+	}
+
+	cout << "The movie information was successfully edited! Thank you.." << endl;
+	return;
 }
 
 
@@ -309,6 +311,13 @@ void Movie_Management_System::load_from_file(const string& input_file_name) {
 		return;
 	}
 
+	if (input_file.peek() == ifstream::traits_type::eof()) {
+		cout << "The input file is empty. Try again later!!!\n" << endl;
+		input_file.close();
+		exit(EXIT_FAILURE);
+	}
+
+
 	while (getline(input_file, read_line)) {
 
 		stringstream read_string(read_line);
@@ -347,6 +356,17 @@ void Movie_Management_System::load_from_file(const string& input_file_name) {
 			cout << "Error in parsing the release date" << endl;
 			continue;
 		}
+
+		if (!isValidDate(obj_release_date)) {
+			cout << "The release date is invalid... Sorry! Try again" << endl;
+			return;
+		}
+
+		else if (!isValidDate(obj_receive_date)) {
+			cout << "The receive date is invalid... Sorry! Try again" << endl;
+			return;
+		}
+
 
 		Movie obj_movie(name_str, obj_release_date, description_str, obj_receive_date, status);
 
@@ -398,6 +418,5 @@ void Movie_Management_System::load_from_file(const string& input_file_name) {
 	// Successfully loaded all the data
 
 }
-
 
 #endif

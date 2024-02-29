@@ -13,12 +13,7 @@
 // Create more test cases ( More input files with different inputs)
 // Need to complete the documentation ( in-line comments )
 
-// Questions to ask professor: Do we need to validate the release date when loading the data from input file ?
-// Questions to ask professor: Can the input file be empty ?
 // Questions to ask professor: Editing new release date and order it in non-decreasing order takes O(n^2). Is that ok ?
-// Questions to ask professor: While enter new release date, do I need to check whether the new release is less than receive date for throwing error message ?
-// Questions to ask professor: We are supposed add movie to the showing list right ? option - 2, if we can only add movies to coming list, then delete status prompt
-// Questions to ask professor: Start showing movies feature - all the specified movies ? 
 
 #include <iostream>
 #include <list>
@@ -87,18 +82,8 @@ int main() {
 			cin >> receive_date_str;
 			cout << endl;
 
-			cout << "Please enter a status (released/received) to add: ";
-			cin >> status_str;
-			cout << endl;
-
-			if (status_str == "released") {
-				status = RELEASED;
-			}
-			else {
-				status = RECEIVED;
-			}
-
-
+			status = RECEIVED;
+	
 			if (obj_release_date.parse_from_string(release_date_str)) {
 				// Successfully parsed the release date
 			}

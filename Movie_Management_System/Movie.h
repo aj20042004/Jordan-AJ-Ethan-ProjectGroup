@@ -1,5 +1,6 @@
 #ifndef MOVIE_H
 #define MOVIE_H
+
 #include <iostream>
 #include "Date.h"
 #include "Status.h"
@@ -87,6 +88,5 @@ void Movie::set_status(Status new_status) {
 
 	status = new_status;
 }
-
 
 #endif
