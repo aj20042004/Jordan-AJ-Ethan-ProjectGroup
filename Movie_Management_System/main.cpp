@@ -13,7 +13,6 @@
 // Create more test cases ( More input files with different inputs)
 // Need to complete the documentation ( in-line comments )
 
-// Questions to ask professor: Editing new release date and order it in non-decreasing order takes O(n^2). Is that ok ?
 
 #include <iostream>
 #include <list>
