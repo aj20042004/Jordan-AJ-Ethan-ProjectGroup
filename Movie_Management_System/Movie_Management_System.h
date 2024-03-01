@@ -110,6 +110,13 @@ void Movie_Management_System::start_showing_movie(const Date& specified_released
 		return;
 	}
 
+	if (coming_list.empty()) {
+		cout << "Sorry! Coming list is empty, cannot move any movies to showing list...\n" << endl;
+		return;
+	}
+
+	list<Movie> matching_movies;
+
 	for (list<Movie>::iterator it = coming_list.begin(); it != coming_list.end(); ++it) {
 
 		// Checking whether the movie exists in coming list
@@ -119,6 +126,7 @@ void Movie_Management_System::start_showing_movie(const Date& specified_released
 			for (list<Movie>::iterator it_1 = showing_list.begin(); it_1 != showing_list.end(); ++it_1) {
 				if (it->get_movie_name() == it_1->get_movie_name()) {
 					cout << "The movie already exists in showing list" << endl;
+					return;
 				}
 			}
 
@@ -128,23 +136,44 @@ void Movie_Management_System::start_showing_movie(const Date& specified_released
 				it->set_status(status);
 			}
 
-			list<Movie>::iterator insertion_place_showing_lst = find_if(showing_list.begin(), showing_list.end(), [&](const Movie& current) {
-				return current.get_release_date() > it->get_release_date();
-				});
+			matching_movies.push_back(*it);
 
-			if (insertion_place_showing_lst == showing_list.end()) {
-				showing_list.push_back(*it);
-				it = coming_list.erase(it);
-				--it;
-			}
-			else {
-				showing_list.insert(insertion_place_showing_lst, *it);
-				it = coming_list.erase(it);
-				--it;
-			}
 		}
 	}
+
+	if (matching_movies.empty()) {
+
+		cout << "No movies found with specified release date" << endl;
+		return;
+
+	}
+
+	list<Movie>::iterator it_2;
+	for (it_2 = showing_list.begin(); it_2 != showing_list.end(); ++it_2) {
+
+		if (it_2->get_release_date() > specified_released_date) {
+
+			showing_list.insert(it_2, matching_movies.begin(), matching_movies.end());
+
+			coming_list.erase(remove_if(coming_list.begin(), coming_list.end(), [specified_released_date](const Movie& current) {
+				return current.get_release_date() == specified_released_date;
+				}), coming_list.end());
+
+			cout << "Successfully moved the movies from coming list to showing list! Thank you...\n" << endl;
+			return;
+		}
+	}
+
+	showing_list.insert(showing_list.end(), matching_movies.begin(), matching_movies.end());
+
+	coming_list.erase(remove_if(coming_list.begin(), coming_list.end(), [specified_released_date](const Movie& current) {
+		return current.get_release_date() == specified_released_date;
+		}), coming_list.end());
+
+	cout << "Successfully moved the movies from coming list to showing list! Thank you...\n" << endl;
+
 }
+
 
 // find the movie and delete the movie and update the release date and insert it again.
 void Movie_Management_System::edit_coming_movie_releaseDate(const string& movie_name_to_edit, const Date& new_release_date) {
@@ -193,10 +222,10 @@ void Movie_Management_System::edit_coming_movie_releaseDate(const string& movie_
 
 	if (insertion_place == coming_list.end()) {
 
-			coming_list.insert(insertion_place, *delete_place);
-			insertion_place--;
-			insertion_place->set_release_date(new_release_date);
-			coming_list.erase(delete_place);
+		coming_list.insert(insertion_place, *delete_place);
+		insertion_place--;
+		insertion_place->set_release_date(new_release_date);
+		coming_list.erase(delete_place);
 	}
 
 	cout << "The movie information was successfully edited! Thank you.." << endl;

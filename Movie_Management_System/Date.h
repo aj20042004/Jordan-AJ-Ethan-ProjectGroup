@@ -123,7 +123,13 @@ bool Date::operator<=(const Date& other) const {
 
 bool Date::operator < (const Date& other) const {
 
-	if (this->month < other.month || this->year < other.year || this->day_of_month || other.day_of_month) {
+	if (this->year < other.year) {
+		return true;
+	}
+	else if (this->year == other.year && this->month < other.month) {
+		return true;
+	}
+	else if (this->year == other.year && this->month == other.month && this->day_of_month < other.day_of_month) {
 		return true;
 	}
 
@@ -134,7 +140,13 @@ bool Date::operator < (const Date& other) const {
 
 bool Date::operator > (const Date& other) const {
 
-	if (this->month > other.month || this->year > other.year || this->day_of_month > other.day_of_month) {
+	if (this->year > other.year) {
+		return true;
+	}
+	else if (this->year == other.year && this->month > other.month) {
+		return true;
+	}
+	else if (this->year == other.year && this->month == other.month && this->day_of_month > other.day_of_month) {
 		return true;
 	}
 
