@@ -66,7 +66,7 @@ void Movie_Management_System::add_movie(const Movie& new_movie) {
 	}
 
 	if (new_movie.get_release_date() <= new_movie.get_receive_date()) {
-		cout << "Release date cannot be earlier or equal to the receive data !! Try again ..." << endl;
+		cout << "Release date cannot be earlier or equal to the receive date!! Try again ..." << endl;
 		return;
 	}
 
@@ -106,7 +106,7 @@ void Movie_Management_System::add_movie(const Movie& new_movie) {
 void Movie_Management_System::start_showing_movie(const Date& specified_released_date) {
 
 	if (!isValidDate(specified_released_date)) {
-		cout << "The release date is invalid... Sorry! Try again" << endl;
+		cout << "The release date is invalid... Sorry! Try again.\n" << endl;
 		return;
 	}
 
@@ -125,7 +125,7 @@ void Movie_Management_System::start_showing_movie(const Date& specified_released
 			// checking whether the movie already exists in showing list
 			for (list<Movie>::iterator it_1 = showing_list.begin(); it_1 != showing_list.end(); ++it_1) {
 				if (it->get_movie_name() == it_1->get_movie_name()) {
-					cout << "The movie already exists in showing list" << endl;
+					cout << "The movie already exists in showing list.\n" << endl;
 					return;
 				}
 			}
@@ -143,7 +143,7 @@ void Movie_Management_System::start_showing_movie(const Date& specified_released
 
 	if (matching_movies.empty()) {
 
-		cout << "No movies found with specified release date" << endl;
+		cout << "No movies found with specified release date.\n" << endl;
 		return;
 
 	}
@@ -185,12 +185,12 @@ void Movie_Management_System::edit_coming_movie_releaseDate(const string& movie_
 		if (it->get_movie_name() == movie_name_to_edit) {
 
 			if (new_release_date <= it->get_receive_date()) {
-				cout << "New Release date cannot be earlier or equal to the receive data !! Try again ..." << endl;
+				cout << "New Release date cannot be earlier or equal to the receive data !! Try again ...\n" << endl;
 				return;
 			}
 
 			if (!isValidDate(new_release_date)) {
-				cout << "The release date is invalid... Sorry! Try again" << endl;
+				cout << "The release date is invalid... Sorry! Try again.\n" << endl;
 				return;
 			}
 
@@ -257,7 +257,7 @@ int Movie_Management_System::count_coming_movies_before_date(const Date& specifi
 
 	if (!isValidDate(specified_date)) {
 
-		cout << "The release date is invalid... Sorry! Try again" << endl;
+		cout << "The release date is invalid!!! Sorry, Try again.." << endl;
 		return count;
 	}
 
@@ -268,6 +268,7 @@ int Movie_Management_System::count_coming_movies_before_date(const Date& specifi
 		}
 	}
 
+	cout << "The Total number of movies: " << count;
 	return count;
 
 }
@@ -394,6 +395,12 @@ void Movie_Management_System::load_from_file(const string& input_file_name) {
 		else if (!isValidDate(obj_receive_date)) {
 			cout << "The receive date is invalid... Sorry! Try again" << endl;
 			return;
+		}
+
+		if (obj_release_date <= obj_receive_date) {
+			cout << "Release date cannot be earlier or equal to the receive date!! Error in loading the file, try again ..." << endl;
+			input_file.close();
+			exit(EXIT_FAILURE);
 		}
 
 

@@ -1,11 +1,15 @@
 The Showing Movies: 
  
-Kong, 2/1/2023, Mystery/Thriller, 1/17/2019, released
-Thor, 2/1/2025, Mystery/Thriller, 1/18/2006, released
-Karate, 2/1/2025, Romance, 9/23/2021, released
-Miss Bala, 2/1/2028, Mystery/Thriller, 1/17/2019, released
+Spider Man, 2/1/2015, Mystery/Thriller, 1/17/2014, released
+Black Panther, 2/1/2015, Mystery/Thriller, 1/18/2006, released
+Iron Man, 2/1/2017, Mystery/Thriller, 1/17/2016, released
+Miss Bala, 2/1/2022, Mystery/Thriller, 1/17/2019, released
+Barbie, 2/1/2022, Mystery/Thriller, 1/17/2019, released
+Bruce Lee, 2/1/2022, Mystery/Thriller, 1/17/2019, released
+Thor, 2/1/2022, Romance/Drama, 1/18/2006, released
+Karate Kid, 2/1/2028, Mystery/Thriller, 1/17/2019, released
  
 The Coming Movies: 
  
-Black Panther, 2/1/2019, Mystery/Thriller, 1/18/2006, received
+Black Window, 12/12/2015, Comedy/Romance, 10/10/2010, received
  

@@ -13,6 +13,11 @@
 // Create more test cases ( More input files with different inputs)
 // Need to complete the documentation ( in-line comments )
 
+// Question to professor:
+// --------------------------
+// Need to check the invalid dates with professor 
+// How can I check whether the movie already exists in the showing list just by using specified release date. What if I have already have the same specified date for different movie.
+// Test cases in project report ? 
 
 #include <iostream>
 #include <list>
@@ -170,7 +175,7 @@ int main() {
 
 			specified_release_date_cnt.parse_from_string(specified_release_date_str_cnt);
 
-			cout << "The Total number of movies: " << movie_mange_system_obj.count_coming_movies_before_date(specified_release_date_cnt);
+			movie_mange_system_obj.count_coming_movies_before_date(specified_release_date_cnt);
 			cout << endl;
 			cout << endl;
 		}
