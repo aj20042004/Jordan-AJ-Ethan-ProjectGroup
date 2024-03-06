@@ -3,11 +3,12 @@
 #include "Status.h"
 #include "Movie.h"
 
-
+// Checks to see if the date in a movie is valid
 bool Movie_Management_System::isValidDate(const Date& date) {
 	return date.isValid();
 }
 
+// Function to display movies
 void Movie_Management_System::display_movies() {
 
 	cout << "The Showing Movies: " << endl;
@@ -26,7 +27,7 @@ void Movie_Management_System::display_movies() {
 	}
 
 }
-
+// Function to add movies
 void Movie_Management_System::add_movie(const Movie& new_movie) {
 
 	if (!isValidDate(new_movie.get_receive_date()) || !isValidDate(new_movie.get_release_date())) {
@@ -49,6 +50,7 @@ void Movie_Management_System::add_movie(const Movie& new_movie) {
 
 	cout << "Adding the movie to the list...Please wait!" << endl;
 
+	// Adds to the showing list if the movie's status is 'recieved.'
 	if (new_movie.get_status() == RECEIVED) {
 
 		if (coming_list.empty()) {
@@ -71,14 +73,14 @@ void Movie_Management_System::add_movie(const Movie& new_movie) {
 
 	cout << "Movie was successfully added to the list. Thank you!!" << endl;
 }
-
+// Cases where movies cannot be added due to dates
 void Movie_Management_System::start_showing_movie(const Date& specified_released_date) {
-
+	// Returns nothing if date is invalid
 	if (!isValidDate(specified_released_date)) {
 		cout << "The release date is invalid... Sorry! Try again.\n" << endl;
 		return;
 	}
-
+	// Returns nothing if there's nothing to be moved from the coming list to the showing list
 	if (coming_list.empty()) {
 		cout << "Sorry! Coming list is empty, cannot move any movies to showing list...\n" << endl;
 		return;
@@ -114,6 +116,7 @@ void Movie_Management_System::start_showing_movie(const Date& specified_released
 		}
 	}
 
+	// Checks whether or not the inputted date has a matching movie
 	if (matching_movies.empty()) {
 
 		cout << "No movies found with specified release date.\n" << endl;
@@ -121,6 +124,7 @@ void Movie_Management_System::start_showing_movie(const Date& specified_released
 
 	}
 
+	// Moves movies from the coming list to the showing list
 	list<Movie>::iterator it_2;
 	for (it_2 = showing_list.begin(); it_2 != showing_list.end(); ++it_2) {
 

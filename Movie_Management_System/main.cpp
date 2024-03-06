@@ -37,6 +37,7 @@ int main() {
 
 	while (loop_switch) {
 
+		// Menu system that takes users through the UI with a series of inputs
 		cout << "Welcome to the Movie Management System" << endl;
 		cout << "-----------------------------------------" << endl;
 		cout << "1. Display Movies" << endl;
