@@ -13,12 +13,6 @@
 // Create more test cases ( More input files with different inputs)
 // Need to complete the documentation ( in-line comments )
 
-// Question to professor:
-// --------------------------
-// Need to check the invalid dates with professor 
-// How can I check whether the movie already exists in the showing list just by using specified release date. What if I have already have the same specified date for different movie.
-// Test cases in project report ? 
-
 #include <iostream>
 #include <list>
 #include <fstream>
@@ -36,7 +30,7 @@ int main() {
 	// Creating a movie management system object
 	Movie_Management_System movie_mange_system_obj;
 
-	movie_mange_system_obj.load_from_file("Test 1.txt");
+	movie_mange_system_obj.load_from_file("Test.txt");
 
 	int choice_number;
 	bool loop_switch = true;
@@ -181,7 +175,7 @@ int main() {
 		}
 
 		else if (choice_number == 7) {
-			movie_mange_system_obj.save_to_file("output.txt");
+			movie_mange_system_obj.save_to_file("Test.txt");
 		}
 
 		else if (choice_number == 8) {
@@ -196,8 +190,6 @@ int main() {
 		}
 
 	}
-
-
 
 	system("pause");
 	return 0;

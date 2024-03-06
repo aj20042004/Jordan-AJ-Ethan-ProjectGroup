@@ -128,7 +128,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="date.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="movie.cpp" />
+    <ClCompile Include="movie_management_system.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="date.h" />
