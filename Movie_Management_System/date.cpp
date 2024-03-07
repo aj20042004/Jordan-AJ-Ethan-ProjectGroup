@@ -1,3 +1,5 @@
+
+// Importing the header file
 #include "Date.h"
 
 // Static variable
@@ -54,11 +56,14 @@ void Date::print_date(ostream& out) const {
 	if (format == "Asian") { out << year << '-' << month << '-' << day_of_month << endl; }
 }
 
+/** Checks whether the date on the left hand side is less than or equal to the date on the right side.
+	@param other: a date to compare
+	@return: {true} if the date on the left hand side is lesser than or equal to the date on the
+	right side; {false} otherwise.
+*/
 bool Date::operator<=(const Date& other) const {
-	// Implement the logic to compare dates
-	// For example, you can compare years, months, and days one by one
-	// or convert them to a comparable numerical value.
-	// Return true if this date is less than or equal to the other date.
+
+	// Checking whether left hand side is less than or equal to the date on the right side.
 	if (this->year < other.year ||
 		(this->year == other.year && this->month < other.month) ||
 		(this->year == other.year && this->month == other.month && this->day_of_month <= other.day_of_month)) {
@@ -69,6 +74,11 @@ bool Date::operator<=(const Date& other) const {
 	}
 }
 
+/** Checks whether the date on the left hand side is less than the date on the right side.
+	@param other: a date to compare
+	@return: {true} if the date on the left hand side is lesser than the date on the right
+	side; {false} otherwise.
+*/
 bool Date::operator < (const Date& other) const {
 
 	if (this->year < other.year) {
@@ -86,7 +96,11 @@ bool Date::operator < (const Date& other) const {
 }
 
 
-
+/** Checks whether the date on the left hand side is greater than the date on the right side.
+	@param other: a date to compare
+	@return: {true} if the date on the left hand side is greater than the date on the right side; 
+	{false} otherwise
+*/
 bool Date::operator > (const Date& other) const {
 
 	// Checking the years
@@ -104,9 +118,13 @@ bool Date::operator > (const Date& other) const {
 	return false;
 }
 
-
+/** Checks whether the date on the left hand side is equal to the date on the right side.
+    @param other: a date to compare
+	@return: {true} if the day_of_month, month and year are equal to each other; {false} otherwise
+*/
 bool Date::operator==(const Date& other) const {
 
+	 
 	if (other.day_of_month == day_of_month && month == other.month && year == other.year) {
 		return true;
 	}
@@ -114,6 +132,9 @@ bool Date::operator==(const Date& other) const {
 }
 
 
+/** Checks whether the date is valid or not.
+	@return: {true} if the date is valid; {false} otherwise
+*/
 bool Date::isValid() const {
 
 	if (year < 1900 || year > 2100) {
@@ -131,7 +152,10 @@ bool Date::isValid() const {
 	return true;
 }
 
-
+/** Tests whether the date could be parsed successfully or not
+	@param date_string: a date in a string format
+	@return: {true} if successfully parsed the date from string; {false} otherwise
+*/
 bool Date::parse_from_string(const string& date_string) {
 
 	istringstream read_string(date_string);
@@ -146,6 +170,7 @@ bool Date::parse_from_string(const string& date_string) {
 	string year_string = date_string.substr(6, 10);
 	year = stoi(year_string);
 
+	// setting the month , day of the month and year.
 	set_month(month);
 	set_day_of_month(day);
 	set_year(year);

@@ -1,9 +1,13 @@
+
+// Importing the header files
 #include "Date.h"
 #include "Status.h"
 #include "Movie.h"
 
 
 // Constructor for the movie class
+
+// Constructor with values of "movie_name" , "release_date", "description", "receive_date", "status".
 Movie::Movie(const string& movie_name_1, const Date& release_date_1, const string& description_1, const Date& receive_date_1, Status status_1) {
 	movie_name = movie_name_1;
 	release_date = release_date_1;
@@ -35,8 +39,8 @@ string Movie::get_description() const {
 	return description;
 }
 
-/** Returns the recieval date of the movie
-	@return: recieval date of the movie
+/** Returns the receive date of the movie
+	@return: receive date of the movie
 */
 Date Movie::get_receive_date() const {
 	return receive_date;
@@ -76,8 +80,8 @@ void Movie::set_description(string new_description) {
 	description = new_description;
 }
 
-/** Updates the recieval date of the movie
-	@param new_recieve_date: updated recieval date of the movie
+/** Updates the receive date of the movie
+	@param new_recieve_date: updated receive date of the movie
 */
 void Movie::set_receive_date(Date new_receive_date) {
 

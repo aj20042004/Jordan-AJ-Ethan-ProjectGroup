@@ -1,12 +1,14 @@
 #ifndef DATE_H
 #define DATE_H
 
+// Importing the modules
 #include <iostream>
 #include <string>
 #include <sstream>
 
 using namespace std;
 
+// Creating the class
 class Date {
 public:
 	// Static variable
