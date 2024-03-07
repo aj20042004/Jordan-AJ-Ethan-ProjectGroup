@@ -52,12 +52,18 @@ int main() {
 		cout << "Enter the choice number: ";
 		cin >> choice_number;
 		cout << endl;
-
+		
+		/**	Function to determine if the user's input was 1 
+			Calls the display.movies function from the movie_manage_system header file
+		*/
 		if (choice_number == 1) {
 			movie_mange_system_obj.display_movies();
 			cout << endl;
 		}
 
+		/**	Function to determine if the user's input was 2 and guides the user through the process of adding a new movie 
+			Recieves the name, release date, description, recieval date, and status
+		*/
 		else if (choice_number == 2) {
 
 			string movie_name_str, release_date_str, description_str, receive_date_str, status_str;
@@ -65,18 +71,22 @@ int main() {
 			Date obj_receive_date;
 			Status status;
 
+			// Input to get the name of the new movie the user wants to add
 			cout << "Please enter a movie name to add: ";
 			getline(cin >> ws, movie_name_str);
 			cout << endl;
 
+			// Input to get the release date of the new movie 
 			cout << "Please enter a release date (format: MM/DD/YYYY - 01/09/2023) to add: ";
 			cin >> release_date_str;
 			cout << endl;
 
+			// Input to get the description of the new movie
 			cout << "Please enter a description to add: ";
 			getline(cin >> ws, description_str);
 			cout << endl;
 
+			// Input to get the recieval date of the new movie
 			cout << "Please enter a receive date (format: MM/DD/YYYY - 01/09/2023) to add: ";
 			cin >> receive_date_str;
 			cout << endl;
@@ -105,16 +115,19 @@ int main() {
 			cout << endl;
 		}
 
-
+		/**	Function to determine if the user's input was 3 and guides the user through the process to edit the release date of a movie 
+		*/
 		else if (choice_number == 3) {
 
 			string edit_movie_name, release_date_str;
 			Date edit_new_release_date;
 
+			// Input to get the name of the movie to be edited
 			cout << "Enter the movie name to edit: ";
 			getline(cin >> ws, edit_movie_name);
 			cout << endl;
 
+			// Input to get the new release date of the movie 
 			cout << "Enter the new release date (format: MM/DD/YYYY - 01/09/2023) to change: ";
 			cin >> release_date_str;
 			cout << endl;
@@ -126,15 +139,19 @@ int main() {
 			cout << endl;
 		}
 
-
+		/**	Function to determine if the user's input was 4 and guides the user through the process to edit a movie's name 
+			Calls upon the edit_movie_name and the edit_new_description function from the header file to edit the movie name and description 
+		*/
 		else if (choice_number == 4) {
 
 			string edit_movie_name, edit_new_description;
 
+			// Input to get the new name of the movie 
 			cout << "Enter the movie name to edit: ";
 			getline(cin >> ws, edit_movie_name);
 			cout << endl;
 
+			// Input to get the new description of the movie 
 			cout << "Enter the new description to change: ";
 			getline(cin >> ws, edit_new_description);
 			cout << endl;
@@ -144,12 +161,15 @@ int main() {
 			cout << endl;
 		}
 
+		/**	Function to determine if the user's input was 5 and guides them through the process of moving a movie from the coming list to the showing list
+		*/
 		else if (choice_number == 5) {
 
 			string specified_release_date_str;
 			Date specified_release_date;
 
 			cout << "Enter the specified release date (format: MM/DD/YYYY - 01/09/2023) to display the movies: " << endl;
+			// Special function to get input for the release date of one specific movie
 			cin >> specified_release_date_str;
 			cout << endl;
 
@@ -159,11 +179,14 @@ int main() {
 
 		}
 
+		/**	Function to determine if the user's input was 6
+		*/
 		else if (choice_number == 6) {
 
 			string specified_release_date_str_cnt;
 			Date specified_release_date_cnt;
 
+			// Input to gather a specific movie's release date
 			cout << "Enter the specified release date (format: MM/DD/YYYY - 01/09/2023): " << endl;
 			cin >> specified_release_date_str_cnt;
 			cout << endl;
@@ -174,6 +197,7 @@ int main() {
 			cout << endl;
 			cout << endl;
 		}
+
 
 		else if (choice_number == 7) {
 			movie_mange_system_obj.save_to_file("Test.txt");
