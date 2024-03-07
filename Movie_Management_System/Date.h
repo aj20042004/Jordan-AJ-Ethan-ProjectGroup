@@ -27,7 +27,7 @@ public:
 	// Overloading the operator ">"
 	bool operator > (const Date&) const;
 
-	// method for checking whether date's are valid or not
+	// method for checking whether dates are valid or not
 	bool isValid() const;
 
 	// method for parse the string to unsigned int format to load the date data
