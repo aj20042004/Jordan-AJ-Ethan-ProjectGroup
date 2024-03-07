@@ -26,6 +26,7 @@ public:
 	int  count_coming_movies_before_date(const Date&);
 	void save_to_file(const string&);
 	void load_from_file(const string&);
+	bool check_movie_in_showinglist(const string&);
 
 private:
 	list<Movie> showing_list;

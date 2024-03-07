@@ -76,44 +76,52 @@ int main() {
 			getline(cin >> ws, movie_name_str);
 			cout << endl;
 
-			// Input to get the release date of the new movie 
-			cout << "Please enter a release date (format: MM/DD/YYYY - 01/09/2023) to add: ";
-			cin >> release_date_str;
-			cout << endl;
+			if (!movie_mange_system_obj.check_movie_in_showinglist(movie_name_str)) {
 
-			// Input to get the description of the new movie
-			cout << "Please enter a description to add: ";
-			getline(cin >> ws, description_str);
-			cout << endl;
+				// Input to get the release date of the new movie 
+				cout << "Please enter a release date (format: MM/DD/YYYY - 01/09/2023) to add: ";
+				cin >> release_date_str;
+				cout << endl;
 
-			// Input to get the recieval date of the new movie
-			cout << "Please enter a receive date (format: MM/DD/YYYY - 01/09/2023) to add: ";
-			cin >> receive_date_str;
-			cout << endl;
+				// Input to get the description of the new movie
+				cout << "Please enter a description to add: ";
+				getline(cin >> ws, description_str);
+				cout << endl;
 
-			status = RECEIVED;
-	
-			if (obj_release_date.parse_from_string(release_date_str)) {
-				// Successfully parsed the release date
+				// Input to get the recieval date of the new movie
+				cout << "Please enter a receive date (format: MM/DD/YYYY - 01/09/2023) to add: ";
+				cin >> receive_date_str;
+				cout << endl;
+
+				status = RECEIVED;
+
+				if (obj_release_date.parse_from_string(release_date_str)) {
+					// Successfully parsed the release date
+				}
+				else {
+					cout << "Error in parsing the release date" << endl;
+					continue;
+				}
+
+
+				if (obj_receive_date.parse_from_string(receive_date_str)) {
+					// "Successfully parsed the receive date"
+				}
+				else {
+					cout << "Error in parsing the release date" << endl;
+					continue;
+				}
+
+				Movie new_movie(movie_name_str, obj_release_date, description_str, obj_receive_date, status);
+				movie_mange_system_obj.add_movie(new_movie);
+				cout << endl;
 			}
+
 			else {
-				cout << "Error in parsing the release date" << endl;
-				continue;
+				cout << "Sorry! Cannot add... the Movie already exists in the lists.\n" << endl;
 			}
-
-
-			if (obj_receive_date.parse_from_string(receive_date_str)) {
-				// "Successfully parsed the receive date"
-			}
-			else {
-				cout << "Error in parsing the release date" << endl;
-				continue;
-			}
-
-			Movie new_movie(movie_name_str, obj_release_date, description_str, obj_receive_date, status);
-			movie_mange_system_obj.add_movie(new_movie);
-			cout << endl;
 		}
+
 
 		/**	Function to determine if the user's input was 3 and guides the user through the process to edit the release date of a movie 
 		*/
@@ -127,16 +135,22 @@ int main() {
 			getline(cin >> ws, edit_movie_name);
 			cout << endl;
 
-			// Input to get the new release date of the movie 
-			cout << "Enter the new release date (format: MM/DD/YYYY - 01/09/2023) to change: ";
-			cin >> release_date_str;
-			cout << endl;
+			if (movie_mange_system_obj.check_movie_in_showinglist(edit_movie_name)) {
 
-			edit_new_release_date.parse_from_string(release_date_str);
+				// Input to get the new release date of the movie 
+				cout << "Enter the new release date (format: MM/DD/YYYY - 01/09/2023) to change: ";
+				cin >> release_date_str;
+				cout << endl;
 
-			movie_mange_system_obj.edit_coming_movie_releaseDate(edit_movie_name, edit_new_release_date);
+				edit_new_release_date.parse_from_string(release_date_str);
 
-			cout << endl;
+				movie_mange_system_obj.edit_coming_movie_releaseDate(edit_movie_name, edit_new_release_date);
+
+				cout << endl;
+			}
+			else {
+				cout << "Sorry!The movie does not exit...Try again later\n" << endl;
+			}
 		}
 
 		/**	Function to determine if the user's input was 4 and guides the user through the process to edit a movie's name 
@@ -151,14 +165,20 @@ int main() {
 			getline(cin >> ws, edit_movie_name);
 			cout << endl;
 
-			// Input to get the new description of the movie 
-			cout << "Enter the new description to change: ";
-			getline(cin >> ws, edit_new_description);
-			cout << endl;
+			if (movie_mange_system_obj.check_movie_in_showinglist(edit_movie_name)) {
 
-			movie_mange_system_obj.edit_coming_movie_description(edit_movie_name, edit_new_description);
+				// Input to get the new description of the movie 
+				cout << "Enter the new description to change: ";
+				getline(cin >> ws, edit_new_description);
+				cout << endl;
 
-			cout << endl;
+				movie_mange_system_obj.edit_coming_movie_description(edit_movie_name, edit_new_description);
+
+				cout << endl;
+			}
+			else { 
+				cout << "Sorry!The movie does not exit...Try again later\n" << endl; 
+			}
 		}
 
 		/**	Function to determine if the user's input was 5 and guides them through the process of moving a movie from the coming list to the showing list

@@ -191,13 +191,7 @@ void Movie_Management_System::edit_coming_movie_releaseDate(const string& movie_
 		}
 	}
 
-	if (delete_place == coming_list.end()) {
-		cout << "Sorry! The movie does not exit...Try again later" << endl;
-		return;
-	}
-
 	list<Movie>::iterator insertion_place;
-
 
 	for (insertion_place = coming_list.begin(); insertion_place != coming_list.end(); ++insertion_place) {
 
@@ -238,7 +232,7 @@ void Movie_Management_System::edit_coming_movie_description(const string& movie_
 		}
 	}
 
-	cout << "Sorry! The movie does not exists in the coming lists" << endl;
+	
 }
 
 
@@ -313,6 +307,18 @@ void Movie_Management_System::save_to_file(const string& output_file_name) {
 	cout << "successfully saved the data to the file " << output_file_name << endl;
 	cout << endl;
 }
+
+
+bool Movie_Management_System::check_movie_in_showinglist(const string& movie_name) {
+
+	for (list<Movie>::iterator it = coming_list.begin(); it != coming_list.end(); it++) {
+		if (it->get_movie_name() == movie_name) {
+			return true;
+		}
+	}
+	return false;
+}
+
 
 void Movie_Management_System::load_from_file(const string& input_file_name) {
 
