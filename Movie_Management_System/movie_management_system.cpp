@@ -27,6 +27,7 @@ void Movie_Management_System::display_movies() {
 	}
 
 }
+
 // Function to add movies
 void Movie_Management_System::add_movie(const Movie& new_movie) {
 
@@ -50,7 +51,7 @@ void Movie_Management_System::add_movie(const Movie& new_movie) {
 
 	cout << "Adding the movie to the list...Please wait!" << endl;
 
-	// Adds to the showing list if the movie's status is 'recieved.'
+	// Adds to the showing list if the movie's status is 'received.'
 	if (new_movie.get_status() == RECEIVED) {
 
 		if (coming_list.empty()) {
@@ -73,13 +74,16 @@ void Movie_Management_System::add_movie(const Movie& new_movie) {
 
 	cout << "Movie was successfully added to the list. Thank you!!" << endl;
 }
+
 // Cases where movies cannot be added due to dates
 void Movie_Management_System::start_showing_movie(const Date& specified_released_date) {
+
 	// Returns nothing if date is invalid
 	if (!isValidDate(specified_released_date)) {
 		cout << "The release date is invalid... Sorry! Try again.\n" << endl;
 		return;
 	}
+
 	// Returns nothing if there's nothing to be moved from the coming list to the showing list
 	if (coming_list.empty()) {
 		cout << "Sorry! Coming list is empty, cannot move any movies to showing list...\n" << endl;
@@ -87,33 +91,45 @@ void Movie_Management_System::start_showing_movie(const Date& specified_released
 	}
 
 	list<Movie> matching_movies;
+	list<Movie>::iterator it = coming_list.begin();
 
-	for (list<Movie>::iterator it = coming_list.begin(); it != coming_list.end(); ++it) {
+	while (it != coming_list.end()) {
 
 		// Checking whether the movie exists in coming list
-		if (it->get_release_date() == specified_released_date) {
+		if (it->get_release_date() != specified_released_date) {
 
-			Movie copy_of_movie = *it;
-			coming_list.erase(it);
-
-			// checking whether the movie already exists in showing list
-			for (list<Movie>::iterator it_1 = showing_list.begin(); it_1 != showing_list.end(); ++it_1) {
-
-				if (copy_of_movie.get_movie_name() == it_1->get_movie_name()) {
-					cout << "The movie already exists in showing list.\n" << endl;
-					return;
-				}
-			}
-
-
-			if (copy_of_movie.get_status() == 0) {
-				Status status = RELEASED;
-				copy_of_movie.set_status(status);
-			}
-
-			matching_movies.push_back(copy_of_movie);
-
+			++it;
+			continue;
 		}
+
+		Movie copy_of_movie = *it;
+		it = coming_list.erase(it);
+
+		// checking whether the movie already exists in showing list
+		list<Movie>::iterator it_1 = showing_list.begin();
+
+		bool movieAlreadyExists = false;
+
+		while (it_1 != showing_list.end()) {
+
+			if (copy_of_movie.get_movie_name() == it_1->get_movie_name()) {
+
+				cout << "The movie " << copy_of_movie.get_movie_name() << " already exists in showing list.\n" << endl;
+				copy_of_movie = *it_1;
+				it_1 = showing_list.erase(it_1);
+				break;
+			}
+			it_1++;
+		}
+
+
+		if (copy_of_movie.get_status() == 0) {
+			Status status = RELEASED;
+			copy_of_movie.set_status(status);
+		}
+
+		matching_movies.push_back(copy_of_movie);
+
 	}
 
 	// Checks whether or not the inputted date has a matching movie
@@ -125,29 +141,40 @@ void Movie_Management_System::start_showing_movie(const Date& specified_released
 	}
 
 	// Moves movies from the coming list to the showing list
-	list<Movie>::iterator it_2;
-	for (it_2 = showing_list.begin(); it_2 != showing_list.end(); ++it_2) {
 
-		if (it_2->get_release_date() > specified_released_date) {
+	list<Movie>::iterator keep_track = showing_list.begin();
 
-			showing_list.insert(it_2, matching_movies.begin(), matching_movies.end());
+	Movie match_movie = *keep_track;
 
-			coming_list.erase(remove_if(coming_list.begin(), coming_list.end(), [specified_released_date](const Movie& current) {
-				return current.get_release_date() == specified_released_date;
-				}), coming_list.end());
+	// matching movies : [ Karate kid, iron man ]
 
-			cout << "Successfully moved the movies from coming list to showing list! Thank you...\n" << endl;
-			return;
+	// showing_list : [ spider man , black Panther  ]
+
+
+
+	for (list<Movie>::iterator it_3 = matching_movies.begin(); it_3 != matching_movies.end(); it_3++) {
+
+		match_movie = *it_3;
+
+		list<Movie>::iterator insertion = showing_list.begin();
+
+		for (; insertion != showing_list.end(); insertion++) {
+			
+			if (insertion->get_release_date() > it_3->get_release_date()) {
+				showing_list.insert(insertion, match_movie);
+				break;
+			}
+
 		}
+
+		if (insertion == showing_list.end()) {
+			showing_list.push_back(match_movie);
+		}
+
 	}
 
-	showing_list.insert(showing_list.end(), matching_movies.begin(), matching_movies.end());
-
-	coming_list.erase(remove_if(coming_list.begin(), coming_list.end(), [specified_released_date](const Movie& current) {
-		return current.get_release_date() == specified_released_date;
-		}), coming_list.end());
-
 	cout << "Successfully moved the movies from coming list to showing list! Thank you...\n" << endl;
+
 
 }
 
@@ -317,6 +344,10 @@ void Movie_Management_System::load_from_file(const string& input_file_name) {
 
 
 	while (getline(input_file, read_line)) {
+
+		if (read_line.empty()) {
+			break;
+		}
 
 		stringstream read_string(read_line);
 		string name_str, release_date_str, description_str, receive_date_str, status_str;
