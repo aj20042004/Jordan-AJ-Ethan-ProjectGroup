@@ -180,6 +180,7 @@ int main() {
 		}
 
 		/**	Function to determine if the user's input was 6
+			Shows how many number of movies are in the list before a certain date
 		*/
 		else if (choice_number == 6) {
 
@@ -198,17 +199,23 @@ int main() {
 			cout << endl;
 		}
 
-
+		/**	Function to determine if the user's input was 7
+			Saves the current list of movies to the text file
+		*/
 		else if (choice_number == 7) {
 			movie_mange_system_obj.save_to_file("Test.txt");
 		}
 
+		/**	Function to determine if the user's input was 8
+			Exits the program
+		*/
 		else if (choice_number == 8) {
 
 			cout << "Thank you" << endl;
 			loop_switch = false;
 		}
 
+		// Prompts the user to try again if they enter an invalid number
 		else {
 			cout << "Invalid Option number!!! Please Try again..." << endl;
 			cout << endl;
