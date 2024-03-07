@@ -86,11 +86,14 @@ bool Date::operator < (const Date& other) const {
 }
 
 
+
 bool Date::operator > (const Date& other) const {
 
+	// Checking the years
 	if (this->year > other.year) {
 		return true;
 	}
+
 	else if (this->year == other.year && this->month > other.month) {
 		return true;
 	}

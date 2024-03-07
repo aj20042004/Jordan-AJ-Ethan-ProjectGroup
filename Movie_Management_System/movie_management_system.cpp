@@ -142,33 +142,21 @@ void Movie_Management_System::start_showing_movie(const Date& specified_released
 
 	// Moves movies from the coming list to the showing list
 
-	list<Movie>::iterator keep_track = showing_list.begin();
-
-	Movie match_movie = *keep_track;
-
-	// matching movies : [ Karate kid, iron man ]
-
-	// showing_list : [ spider man , black Panther  ]
-
-
-
 	for (list<Movie>::iterator it_3 = matching_movies.begin(); it_3 != matching_movies.end(); it_3++) {
-
-		match_movie = *it_3;
 
 		list<Movie>::iterator insertion = showing_list.begin();
 
 		for (; insertion != showing_list.end(); insertion++) {
 			
 			if (insertion->get_release_date() > it_3->get_release_date()) {
-				showing_list.insert(insertion, match_movie);
+				showing_list.insert(insertion, *it_3);
 				break;
 			}
 
 		}
 
 		if (insertion == showing_list.end()) {
-			showing_list.push_back(match_movie);
+			showing_list.push_back(*it_3);
 		}
 
 	}
