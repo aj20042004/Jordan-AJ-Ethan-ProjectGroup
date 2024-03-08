@@ -53,3 +53,35 @@ Changelog:
  - 1.0.0 (Date): Initial release.
 
 Future Improvements:
+- User Authentication:
+  Implementation of user authentication for secure access to the system. We can achieve this by creating usernames and passwords for logging into the system safely.
+  
+-	Search and Filtering:
+  Adding search and filtering options for efficient and fast retrieval of movie information. Designing an effective algorithm will be fundamental for performance.
+ 	
+-	GUI Interface:
+  Develop a graphical user interface for a more user-friendly experience.
+ 	
+-	Database Integration:
+  Integration of a back-end database system would be better for data management and persistence. By using open-source relational databases, long-term data could be archived and retrieved more efficiently.
+ 	
+-	Error Handling:
+  Enhancing error handling and providing meaningful error messages for better user guidance.
+ 	
+-	Sorting Algorithms:
+  Implementation of more efficient algorithms for large datasets would reduce the customer wait time.
+ 	
+-	Data Validation:
+  Improve input validation to handle various edge cases for detail.
+ 	
+-	Reporting:
+  Add reporting features to generate statistics and insights about movie data. We can perform graphical analysis for better comprehension.
+ 	
+-	Notification System:
+  Implementation of a notification system for important events or upcoming movie releases.
+ 	
+- Creating rating and expiration date feature:
+  Create a rating and expiration date feature for gaining insights about customer satisfaction. Enabling customers to rate the movies would be useful for determining whether a movie should be displayed in the 
+  theater or not. Having an expiration date feature pushes the movie to the archive when the movie passes the expiration date. This would be helpful in keeping track of current movies and getting rid of unwanted 
+  movies.
+
