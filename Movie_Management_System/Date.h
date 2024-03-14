@@ -12,7 +12,7 @@ using namespace std;
 class Date {
 public:
 	// Static variable
-	static string format;  // Either "US", "Euro", or "Asian"
+	static string format;  // String format for US
 
 	// Constructor
 	Date(unsigned int = 0, unsigned int = 0, unsigned int = 0);  // Constructor with initial values of "month", "day" and "year"
